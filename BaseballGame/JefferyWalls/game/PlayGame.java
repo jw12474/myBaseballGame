@@ -6,5 +6,13 @@ public class PlayGame {
 		// TODO Auto-generated method stub
 
 	}
+	
+	Player1 first;
+	Player1 second;
+	
+	public PlayGame(Player1 firstPlayer, Player1 secondPlayer) {
+		first = firstPlayer;
+		second = secondPlayer;
+	}
 
 }

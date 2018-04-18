@@ -139,8 +139,9 @@ public class StartMenu extends Application {
 		answer1 = player1question;
 		answer2 = player2question;
 		
-		Player1 first = Player1(player1Name, player1Color, answer1);
-		Player1 second = Player1(player2Name, player2Color, answer2);
+		Player1 first = new Player1(player1Name, player1Color, answer1);
+		Player1 second = new Player1(player2Name, player2Color, answer2);
+		PlayGame session = new PlayGame(first, second);
 		
 		
 	}
