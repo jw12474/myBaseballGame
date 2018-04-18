@@ -1,6 +1,5 @@
 package game;
 import javafx.application.Application;
-import PlayGame.java;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -62,7 +61,7 @@ public class StartMenu extends Application {
 		p2DpBox.setItems(colors);
 		p2DpBox.setLayoutX(230);
 		p2DpBox.setLayoutY(100);
-		
+		//people who don't like pineapple on pizza don't deserve to win
 		Label player1question = new Label("Do you like pineapple on pizza");
 		player1question.setLayoutX(20);
 		player1question.setLayoutY(130);
@@ -80,7 +79,7 @@ public class StartMenu extends Application {
 		player1btn1.setToggleGroup(group1);
 		
 		RadioButton player1btn2 = new RadioButton("No");
-		player1btn2.setLayoutX(60);
+		player1btn2.setLayoutX(70);
 		player1btn2.setLayoutY(160);
 		player1btn2.setToggleGroup(group1);
 		
@@ -91,7 +90,7 @@ public class StartMenu extends Application {
 		
 		RadioButton player2btn2 = new RadioButton("No");
 		player2btn2.setLayoutY(160);
-		player2btn2.setLayoutX(260);
+		player2btn2.setLayoutX(270);
 		player2btn2.setToggleGroup(group2);
 		
 		Button start = new Button("Start");
@@ -129,16 +128,24 @@ public class StartMenu extends Application {
 	private String player2Name;
 	private String player1Color;
 	private String player2Color;
+	private boolean answer1;
+	private boolean answer2;
 	
 	public void btnClick(String player1,String  player2, String p1DpBox, String p2DpBox, boolean player1question, boolean player2question) {
 		player1Name =  player1;
 		player2Name = player2;
 		player1Color = p1DpBox;
 		player2Color = p2DpBox;
+		answer1 = player1question;
+		answer2 = player2question;
+		
+		Player1 first = Player1(player1Name, player1Color, answer1);
+		Player1 second = Player1(player2Name, player2Color, answer2);
+		
 		
 	}
-	//Player1 player1 = new Player1(player1Name, player1Color);
-	//Player1 player2 = new Player1(player2Name, player2Color);
+
+	
 	
 
 	
