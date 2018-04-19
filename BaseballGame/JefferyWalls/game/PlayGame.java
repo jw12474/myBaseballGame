@@ -14,5 +14,9 @@ public class PlayGame {
 		first = firstPlayer;
 		second = secondPlayer;
 	}
+	
+	public void start() {
+		
+	}
 
 }

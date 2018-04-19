@@ -142,7 +142,7 @@ public class StartMenu extends Application {
 		Player1 first = new Player1(player1Name, player1Color, answer1);
 		Player1 second = new Player1(player2Name, player2Color, answer2);
 		PlayGame session = new PlayGame(first, second);
-		
+		session.start();
 		
 	}
 
