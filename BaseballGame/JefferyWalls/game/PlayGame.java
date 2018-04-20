@@ -7,13 +7,15 @@ public class PlayGame {
 
 	}
 	
-	Player1 first;
-	Player1 second;
+	static Player1 first;
+	static Player1 second;
+	private int strikeCount;
 	
 	public PlayGame(Player1 firstPlayer, Player1 secondPlayer) {
 		first = firstPlayer;
 		second = secondPlayer;
 	}
+	
 	
 	public void start() {
 		

@@ -10,6 +10,7 @@ public class Player1  {
 	private String playerName;
 	private int luck;
 	private boolean question;
+	private String status;
 	public Player1(String name, String color, boolean question) {
 		playerName = name;
 		playerColor = color;
@@ -21,6 +22,14 @@ public class Player1  {
 	}
 	public String getPlayerColor() {
 		return playerColor;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	public String getStatus() {
+		return status;
 	}
 	
 	

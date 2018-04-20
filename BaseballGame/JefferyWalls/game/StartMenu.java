@@ -51,7 +51,7 @@ public class StartMenu extends Application {
 		player2color.setLayoutX(260);
 		player2color.setLayoutY(80);
 		
-		ObservableList<String> colors = FXCollections.observableArrayList("Blue", "Red", "Black", "Green");
+		ObservableList<String> colors = FXCollections.observableArrayList("BLUE", "RED", "BLACK", "GREEN");
 		ComboBox<String> p1DpBox = new ComboBox<String>();
 		p1DpBox.setItems(colors);
 		p1DpBox.setLayoutX(30);

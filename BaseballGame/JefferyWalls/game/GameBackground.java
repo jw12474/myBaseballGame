@@ -1,4 +1,5 @@
 package game;
+import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
 
@@ -22,6 +23,8 @@ public class GameBackground extends Application {
 	}
 	
 	
+	Player1 first = PlayGame.first;
+	Player1 second = PlayGame.second;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -94,7 +97,30 @@ public class GameBackground extends Application {
 		b4.setEndY(600);
 		
 		//foul line
-		;
+		Line f1 = new Line();
+		f1.setFill(Color.WHITESMOKE);
+		f1.setStroke(Color.WHITESMOKE);
+		f1.setStartX(825);
+		f1.setStartY(420);
+		f1.setEndX(1050);
+		f1.setEndY(190);
+		
+		Line f2 = new Line();
+		f2.setFill(Color.WHITESMOKE);
+		f2.setStroke(Color.WHITESMOKE);
+		f2.setStartX(475);
+		f2.setStartY(445);
+		
+		
+		Circle player1 = new Circle(10);
+		player1.setFill(Color.first.getPlayerColor());
+		PathTransition pt = new PathTransition();
+		pt.setNode(player1);
+		pt.setPath(b1);
+		
+		
+		
+		
 		
 				
 		
@@ -104,7 +130,7 @@ public class GameBackground extends Application {
 		mound.setLayoutY(425);
 		
 		Pane pane1 = new Pane();
-		pane1.getChildren().addAll(circle1,circle2,b1,b2,b3,b4,base1,base2,base3, base4,mound);
+		pane1.getChildren().addAll(circle1,circle2,b1,b2,b3,b4,f1,base1,base2,base3, base4,mound);
 		
 		Scene scene1 = new Scene(pane1, 1250, 800 );
 		scene1.setFill(Color.GREEN);
@@ -115,8 +141,8 @@ public class GameBackground extends Application {
 	
 	
 	
-//	public void backgroundview() {
-//		launch();
-//	}
+	public void backgroundview() {
+		launch();
+	}
 
 }
