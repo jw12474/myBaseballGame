@@ -11,6 +11,9 @@ public class Player1  {
 	private int luck;
 	private boolean question;
 	private String status;
+	private int Score;
+	
+
 	public Player1(String name, String color, boolean question) {
 		playerName = name;
 		playerColor = color;
@@ -20,6 +23,8 @@ public class Player1  {
 	public String getPlayerName() {
 		return playerName;
 	}
+	
+	
 	public String getPlayerColor() {
 		return playerColor;
 	}
@@ -52,6 +57,13 @@ public class Player1  {
 		System.out.println(luck);
 		return luck;
 		
+	}
+	public int getScore() {
+		return Score;
+	}
+
+	public void setScore(int score) {
+		Score = score;
 	}
 
 }

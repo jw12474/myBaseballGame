@@ -1,5 +1,6 @@
 package game;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -109,7 +110,12 @@ public class StartMenu extends Application {
 				boolean player2questions;
 				if(group1.getUserData() == "YES") {player2questions = true;} else {player2questions = false;}
 				
-				btnClick(player1S, player2s, p1DpBoxs, p2DpBoxs, player1questions, player2questions);
+				try {
+					btnClick(player1S, player2s, p1DpBoxs, p2DpBoxs, player1questions, player2questions);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 		});
@@ -131,7 +137,7 @@ public class StartMenu extends Application {
 	private boolean answer1;
 	private boolean answer2;
 	
-	public void btnClick(String player1,String  player2, String p1DpBox, String p2DpBox, boolean player1question, boolean player2question) {
+	public void btnClick(String player1,String  player2, String p1DpBox, String p2DpBox, boolean player1question, boolean player2question) throws Exception {
 		player1Name =  player1;
 		player2Name = player2;
 		player1Color = p1DpBox;
@@ -141,9 +147,16 @@ public class StartMenu extends Application {
 		
 		Player1 first = new Player1(player1Name, player1Color, answer1);
 		Player1 second = new Player1(player2Name, player2Color, answer2);
-		PlayGame session = new PlayGame(first, second);
-		session.start();
 		
+		PlayGame session = new PlayGame(first, second);
+//		
+//		session.start();
+		
+		
+	}
+	
+	public static void exit() {
+		Platform.exit();
 	}
 
 	

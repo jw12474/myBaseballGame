@@ -9,10 +9,15 @@ public class PlayerActions {
 
 	}
 	
+	//array for batters 0 is for first 
+	boolean[] batterarray = new boolean[4];
+	
 	
 	
 	public void batter() {
-		while(PlayGame.first.get)
+		while(PlayGame.first.getStatus() == "Batter") {
+			
+		}
 	}
 	public void pitcher() {
 		
