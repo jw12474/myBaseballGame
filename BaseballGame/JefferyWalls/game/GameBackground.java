@@ -53,15 +53,15 @@ public class GameBackground extends Application {
 	
 	public Pane createPane() {
 
-//		Label firstname = new Label(PlayGame.first.getPlayerName());
-//		firstname.setLayoutX(200);
-//		firstname.setLayoutY(100);
-//		firstname.setTextFill(Color.valueOf(PlayGame.first.getPlayerColor()));
-//		
-//		Label secondname = new Label(PlayGame.second.getPlayerName());
-//		secondname.setLayoutX(1150);
-//		secondname.setLayoutY(100);
-//		secondname.setTextFill(Color.valueOf(PlayGame.second.getPlayerColor()));
+		Label firstname = new Label(StartMenu.session.first.getPlayerName());
+		firstname.setLayoutX(200);
+		firstname.setLayoutY(100);
+		firstname.setTextFill(Color.valueOf(StartMenu.session.first.getPlayerColor()));
+		
+		Label secondname = new Label(PlayGame.second.getPlayerName());
+		secondname.setLayoutX(1150);
+		secondname.setLayoutY(100);
+		secondname.setTextFill(Color.valueOf(PlayGame.second.getPlayerColor()));
 		
 		
 		//bases for refrence points to run for in the other code 

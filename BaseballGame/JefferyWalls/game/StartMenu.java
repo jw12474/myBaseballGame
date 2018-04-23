@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -41,7 +42,11 @@ public void start(Stage primaryStage) throws Exception {
 	
 	public void showGameBackground(Stage stage) {
 		GameBackground app = new GameBackground();
-		app.initializeAndShowStage(stage);
+		Pane field = new Pane(app.createPane());
+		Scene background = new Scene(field,1350,800);
+		background.setFill(Color.GREEN);
+		stage.setScene(background);
+		stage.show();
 	}
 	Stage secondStage = new Stage();
 	
@@ -158,6 +163,9 @@ public void start(Stage primaryStage) throws Exception {
 	private String player2Color;
 	private boolean answer1;
 	private boolean answer2;
+	private Player1 first;
+	private Player1 second;
+	public static PlayGame session; 
 	
 	public void btnClick(String player1,String  player2, String p1DpBox, String p2DpBox, boolean player1question, boolean player2question) throws Exception {
 		player1Name =  player1;
@@ -170,7 +178,7 @@ public void start(Stage primaryStage) throws Exception {
 		Player1 first = new Player1(player1Name, player1Color, answer1);
 		Player1 second = new Player1(player2Name, player2Color, answer2);
 		
-		PlayGame session = new PlayGame(first, second);
+		session = new PlayGame(first, second);
 		
 		showGameBackground(secondStage);
 		
