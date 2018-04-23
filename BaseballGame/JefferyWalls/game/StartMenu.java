@@ -27,7 +27,26 @@ public class StartMenu extends Application {
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+public void start(Stage primaryStage) throws Exception {
+		
+//		
+		initializeAndShowStage(primaryStage);
+	}
+	
+	public void initializeAndShowStage(Stage stage) {
+        stage.setScene(createScene());
+        stage.show();
+    }
+	
+	
+	public void showGameBackground(Stage stage) {
+		GameBackground app = new GameBackground();
+		app.initializeAndShowStage(stage);
+	}
+	Stage secondStage = new Stage();
+	
+	
+	public Scene createScene() {
 		Label player1Label = new Label("Player 1");
 		player1Label.setLayoutX(60);
 		player1Label.setLayoutY(30);
@@ -110,23 +129,26 @@ public class StartMenu extends Application {
 				boolean player2questions;
 				if(group1.getUserData() == "YES") {player2questions = true;} else {player2questions = false;}
 				
-				try {
-					btnClick(player1S, player2s, p1DpBoxs, p2DpBoxs, player1questions, player2questions);
-				} catch (Exception e) {
+				
+					try {
+						btnClick(player1S, player2s, p1DpBoxs, p2DpBoxs, player1questions, player2questions);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
 				}
-			}
+			
 			
 		});
 		
 		Pane pane1 = new Pane();
 		pane1.getChildren().addAll(player1Label,player2Label,player1,player2,p1DpBox, p2DpBox,player1color,player2color,player1question,player2question,player1btn1,player1btn2,player2btn1,player2btn2,start);
 		Scene scene1 = new Scene(pane1, 400, 250 );
-		primaryStage.setTitle("Play Baseball");
-		primaryStage.setScene(scene1);
-		primaryStage.show();
 		
+		return scene1;
 	}
 
 	//variables for players for the next class to use
@@ -149,15 +171,14 @@ public class StartMenu extends Application {
 		Player1 second = new Player1(player2Name, player2Color, answer2);
 		
 		PlayGame session = new PlayGame(first, second);
-//		
-//		session.start();
+		
+		showGameBackground(secondStage);
+		
 		
 		
 	}
 	
-	public static void exit() {
-		Platform.exit();
-	}
+	
 
 	
 	

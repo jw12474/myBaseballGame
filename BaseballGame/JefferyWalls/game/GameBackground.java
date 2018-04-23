@@ -1,6 +1,7 @@
 package game;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -37,6 +38,21 @@ public class GameBackground extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 //		
+		initializeAndShowStage(primaryStage);
+	}
+	
+	public void initializeAndShowStage(Stage stage) {
+		
+		Scene field = new Scene(createPane(),1350,800);
+		field.setFill(Color.GREEN);
+		stage.setScene(field);
+        stage.show();
+    }
+	
+	
+	
+	public Pane createPane() {
+
 //		Label firstname = new Label(PlayGame.first.getPlayerName());
 //		firstname.setLayoutX(200);
 //		firstname.setLayoutY(100);
@@ -142,11 +158,8 @@ public class GameBackground extends Application {
 		Pane pane1 = new Pane();
 		pane1.getChildren().addAll(circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound/*, firstname, secondname*/);
 		
-		Scene scene1 = new Scene(pane1, 1350, 800 );
-		scene1.setFill(Color.GREEN);
-		primaryStage.setTitle("Play Baseball");
-		primaryStage.setScene(scene1);
-		primaryStage.show();
+		
+		return pane1;
 	}
 	
 	
