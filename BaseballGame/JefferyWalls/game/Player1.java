@@ -12,6 +12,7 @@ public class Player1  {
 	private boolean question;
 	private String status;
 	private int Score;
+	private int out;
 	
 
 	public Player1(String name, String color, boolean question) {
@@ -62,8 +63,15 @@ public class Player1  {
 		return Score;
 	}
 
-	public void setScore(int score) {
-		Score = score;
+	public void addToScore() {
+		Score++;
+	}
+	
+	public int getOut() {
+		return strike;
+	}
+	public void addToOut() {
+		out++;
 	}
 
 }

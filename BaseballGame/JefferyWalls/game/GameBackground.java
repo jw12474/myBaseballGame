@@ -4,6 +4,8 @@ import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -52,14 +54,21 @@ public class GameBackground extends Application {
 	
 	
 	public Pane createPane() {
+		
+		Image green = new Image("file:green.jpg");
+		ImageView greenBackground = new ImageView();
+		greenBackground.setImage(green);
+		greenBackground.setFitHeight(800);
+		greenBackground.setFitWidth(1350);
+		
 
 		Label firstname = new Label(StartMenu.session.first.getPlayerName());
-		firstname.setLayoutX(200);
+		firstname.setLayoutX(150);
 		firstname.setLayoutY(100);
 		firstname.setTextFill(Color.valueOf(StartMenu.session.first.getPlayerColor()));
 		
 		Label secondname = new Label(PlayGame.second.getPlayerName());
-		secondname.setLayoutX(1150);
+		secondname.setLayoutX(1200);
 		secondname.setLayoutY(100);
 		secondname.setTextFill(Color.valueOf(PlayGame.second.getPlayerColor()));
 		
@@ -156,7 +165,7 @@ public class GameBackground extends Application {
 		mound.setLayoutY(425);
 		
 		Pane pane1 = new Pane();
-		pane1.getChildren().addAll(circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound/*, firstname, secondname*/);
+		pane1.getChildren().addAll(greenBackground,circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound, firstname, secondname);
 		
 		
 		return pane1;

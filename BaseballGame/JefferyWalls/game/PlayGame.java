@@ -8,7 +8,7 @@ public class PlayGame  {
 	}
 	
 	public Player1 first;
-	static Player1 second;
+	public Player1 second;
 //	private int strikeCount;
 //	
 	public PlayGame(Player1 firstPlayer, Player1 secondPlayer) {
