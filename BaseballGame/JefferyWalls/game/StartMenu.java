@@ -26,12 +26,13 @@ public class StartMenu extends Application {
 
 		launch();
 	}
+	Stage primaryStage= new Stage();
 
 	@Override
 public void start(Stage primaryStage) throws Exception {
 		
 //		
-		initializeAndShowStage(primaryStage);
+		initializeAndShowStage(this.primaryStage);
 	}
 	
 	public void initializeAndShowStage(Stage stage) {
@@ -48,7 +49,7 @@ public void start(Stage primaryStage) throws Exception {
 		stage.setScene(background);
 		stage.show();
 	}
-	Stage secondStage = new Stage();
+	//Stage secondStage = new Stage();
 	
 	
 	public Scene createScene() {
@@ -180,7 +181,7 @@ public void start(Stage primaryStage) throws Exception {
 		
 		session = new PlayGame(first, second);
 		
-		showGameBackground(secondStage);
+		showGameBackground(primaryStage);
 		
 		
 		

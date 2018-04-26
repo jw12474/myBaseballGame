@@ -1,6 +1,8 @@
 package game;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -58,6 +60,7 @@ public class GameBackground extends Application {
 	public Pane createPane() {
 		
 		Font font = new Font("Arial", 50);
+		Font score = new Font("Arial", 25);
 		
 		Image green = new Image("file:green.jpg");
 		ImageView greenBackground = new ImageView();
@@ -77,6 +80,31 @@ public class GameBackground extends Application {
 		secondname.setLayoutY(100);
 		secondname.setFont(font);
 		secondname.setTextFill(Color.valueOf(StartMenu.session.second.getPlayerColor()));
+		
+		Label scoreLabel1 = new Label("Score");
+		scoreLabel1.setLayoutX(100);
+		scoreLabel1.setFont(score);
+		scoreLabel1.setLayoutY(150);
+		scoreLabel1.setTextFill(Color.valueOf(StartMenu.session.first.getPlayerColor()));
+		
+		Label firstScore = new Label(StartMenu.session.first.getScore());
+		firstScore.setLayoutX(100);
+		firstScore.setFont(score);
+		firstScore.setLayoutY(175);
+		firstScore.setTextFill(Color.valueOf(StartMenu.session.first.getPlayerColor()));
+		
+		Label scoreLabel2 = new Label("Score");
+		scoreLabel2.setLayoutX(1150);
+		scoreLabel2.setFont(score);
+		scoreLabel2.setLayoutY(150);
+		scoreLabel2.setTextFill(Color.valueOf(StartMenu.session.second.getPlayerColor()));
+		
+		Label secondScore = new Label(StartMenu.session.second.getScore());
+		secondScore.setLayoutX(1150);
+		secondScore.setFont(score);
+		secondScore.setLayoutY(175);
+		secondScore.setTextFill(Color.valueOf(StartMenu.session.second.getPlayerColor()));
+		
 		
 		
 		//bases for refrence points to run for in the other code 
@@ -171,14 +199,44 @@ public class GameBackground extends Application {
 		mound.setLayoutY(425);
 		
 		Button start = new Button("Start pitch");
-		start.setLayoutX(625);
+		start.setLayoutX(600);
 		start.setLayoutY(700);
 		
+		Button restart = new Button("Restart");
+		restart.setLayoutX(700);
+		restart.setLayoutY(700);
+		restart.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					restart();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		});
+		
 		Pane pane1 = new Pane();
-		pane1.getChildren().addAll(greenBackground,start,circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound, firstname, secondname);
+		pane1.getChildren().addAll(greenBackground,restart,start,circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound, firstname, secondname,scoreLabel1, scoreLabel2,firstScore,secondScore);
 		
 		
 		return pane1;
+	}
+	Stage restart = new Stage();
+	
+	private void restart() throws Exception {
+		Platform.setImplicitExit(false);
+		
+		StartMenu ap = new StartMenu();
+		ap.primaryStage.close();
+		
+		
+		ap.initializeAndShowStage(restart);
+		ap.primaryStage.close();
+		
 	}
 	
 	

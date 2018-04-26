@@ -11,8 +11,8 @@ public class Player1  {
 	private int luck;
 	private boolean question;
 	private String status;
-	private int Score;
-	private int out;
+	private int Score=0;
+	private int out= 0;
 	
 
 	public Player1(String name, String color, boolean question) {
@@ -59,8 +59,9 @@ public class Player1  {
 		return luck;
 		
 	}
-	public int getScore() {
-		return Score;
+	public String getScore() {
+		String scoreNow = Integer.toString(Score);
+		return scoreNow;
 	}
 
 	public void addToScore() {
@@ -68,7 +69,7 @@ public class Player1  {
 	}
 	
 	public int getOut() {
-		return strike;
+		return out;
 	}
 	public void addToOut() {
 		out++;
