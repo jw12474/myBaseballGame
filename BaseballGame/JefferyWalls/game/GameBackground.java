@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 public class GameBackground extends Application {
 
@@ -55,6 +57,8 @@ public class GameBackground extends Application {
 	
 	public Pane createPane() {
 		
+		Font font = new Font("Arial", 50);
+		
 		Image green = new Image("file:green.jpg");
 		ImageView greenBackground = new ImageView();
 		greenBackground.setImage(green);
@@ -63,14 +67,16 @@ public class GameBackground extends Application {
 		
 
 		Label firstname = new Label(StartMenu.session.first.getPlayerName());
-		firstname.setLayoutX(150);
+		firstname.setLayoutX(100);
+		firstname.setFont(font);
 		firstname.setLayoutY(100);
 		firstname.setTextFill(Color.valueOf(StartMenu.session.first.getPlayerColor()));
 		
-		Label secondname = new Label(PlayGame.second.getPlayerName());
-		secondname.setLayoutX(1200);
+		Label secondname = new Label(StartMenu.session.second.getPlayerName());
+		secondname.setLayoutX(1150);
 		secondname.setLayoutY(100);
-		secondname.setTextFill(Color.valueOf(PlayGame.second.getPlayerColor()));
+		secondname.setFont(font);
+		secondname.setTextFill(Color.valueOf(StartMenu.session.second.getPlayerColor()));
 		
 		
 		//bases for refrence points to run for in the other code 
@@ -164,8 +170,12 @@ public class GameBackground extends Application {
 		mound.setLayoutX(625);
 		mound.setLayoutY(425);
 		
+		Button start = new Button("Start pitch");
+		start.setLayoutX(625);
+		start.setLayoutY(700);
+		
 		Pane pane1 = new Pane();
-		pane1.getChildren().addAll(greenBackground,circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound, firstname, secondname);
+		pane1.getChildren().addAll(greenBackground,start,circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound, firstname, secondname);
 		
 		
 		return pane1;
