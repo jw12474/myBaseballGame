@@ -164,7 +164,7 @@ public void start(Stage primaryStage) throws Exception {
 	private String player2Color;
 	private boolean answer1;
 	private boolean answer2;
-	private Player1 first;
+    private Player1 first;
 	private Player1 second;
 	public static PlayGame session; 
 	

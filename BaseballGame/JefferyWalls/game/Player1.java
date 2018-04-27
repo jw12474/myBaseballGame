@@ -63,6 +63,10 @@ public class Player1  {
 		String scoreNow = Integer.toString(Score);
 		return scoreNow;
 	}
+	
+	public int getIntScore() {
+		return Score;
+	}
 
 	public void addToScore() {
 		Score++;

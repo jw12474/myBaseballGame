@@ -239,6 +239,10 @@ public class GameBackground extends Application {
 		
 	}
 	
+	public void endGame() {
+		
+	}
+	
 	
 	
 //	
