@@ -264,8 +264,19 @@ public class GameBackground extends Application {
 			b3player.setVisible(true);
 		}
 		
+		Label round = new Label("Round");
+		round.setLayoutX(625);
+		round.setLayoutY(100);
+		round.setFont(font);
+		round.setTextFill(Color.WHITE);
+		Label roundNum = new Label(StartMenu.session.getRound());
+		roundNum.setLayoutX(625);
+		roundNum.setLayoutY(100);
+		roundNum.setFont(score);
+		roundNum.setTextFill(Color.WHITE);
+		
 		Pane pane1 = new Pane();
-		pane1.getChildren().addAll(greenBackground,restart,start,circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound, firstname, secondname,scoreLabel1, scoreLabel2,firstScore,secondScore);
+		pane1.getChildren().addAll(greenBackground,restart,round,roundNum,start,circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound, firstname, secondname,scoreLabel1, scoreLabel2,firstScore,secondScore);
 		
 		
 		return pane1;
@@ -287,50 +298,70 @@ public class GameBackground extends Application {
 public Stage sliders = new Stage();
 	
 	public Scene slider() {
-		Label player1 = new Label(StartMenu.session.first.getPlayerName());
-		Label player2 = new Label(StartMenu.session.second.getPlayerName());
-		player1.setLayoutX(100);
-		player2.setLayoutX(300);
-		player1.setLayoutY(100);
-		player2.setLayoutY(100);
+		Label player1Name = new Label(StartMenu.session.first.getPlayerName());
+		Label player2Name = new Label(StartMenu.session.second.getPlayerName());
+		player1Name.setLayoutX(100);
+		player2Name.setLayoutX(300);
+		player1Name.setLayoutY(100);
+		player2Name.setLayoutY(100);
 		Label pitch = new Label("Pitcher"); 
-		Slider pitcher = new Slider();
+		Slider player1 = new Slider();
+		player1.setLayoutX(100);
+		player1.setLayoutY(150);
+		player1.setOrientation(Orientation.VERTICAL);
 		
+		Slider player2 = new Slider();
+		player2.setLayoutX(300);
+		player2.setLayoutY(200);
+		player2.setOrientation(Orientation.VERTICAL);
 		if(StartMenu.session.first.getStatus() == "Pitcher") {
-			pitcher.setLayoutX(100);
+			
 			pitch.setLayoutX(100);
 			
 		}else if(StartMenu.session.second.getStatus() == "Pitcher") {
-			pitcher.setLayoutX(300);
+			
 			pitch.setLayoutX(300);
 		}
 		pitch.setLayoutY(150);
-		pitcher.setLayoutY(200);
-		pitcher.setOrientation(Orientation.VERTICAL);
 		
-		Slider batter = new Slider();
+		
+		
 		Label bat = new Label("Batter");
 		if(StartMenu.session.first.getStatus() == "Batter") {
-			batter.setLayoutX(100);
+			
 			bat.setLayoutX(100);
 		}else if(StartMenu.session.second.getStatus() == "Batter") {
-			batter.setLayoutX(300);
+			
 			bat.setLayoutX(300);
 		}
 		bat.setLayoutY(150);
-		batter.setLayoutY(200);
-		batter.setOrientation(Orientation.VERTICAL);
+		
 		
 		
 		//set numbers to the sliders
-		pitcher.setMin(0);
-		pitcher.setMax(100);
-		batter.setMin(0);
-		batter.setMax(100);
-		pitcher.se
+		player1.setMin(0);
+		player1.setMax(100);
+		player2.setMin(0);
+		player2.setMax(100);
+		Label instruction = new Label("Place slider at level you want then when both are ready press Done");
+		instruction.setLayoutX(180);
+		instruction.setLayoutY(10);
+		
+		Button done = new Button("Done");
+		done.setLayoutX();
+		done.setLayoutY(value);
+		done.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				int 
+				
+			}
+			
+		});
 		
 		Pane pane = new Pane();
-		pane.getChildren().addAll(player1,player2,batter,pitcher,bat,pitch);
+		pane.getChildren().addAll(instruction,player1Name,player2Name,player1,player2,bat,pitch);
 		Scene scene = new Scene(pane, 500, 400 );
 		
 		return scene;
@@ -344,6 +375,10 @@ public Stage sliders = new Stage();
 	
 	public void endGame() {
 		System.exit(0);
+	}
+	private void slidersDone(int player1, int player2) {
+		playBall.determineHit(player1, player2);
+		sliders.close();
 	}
 	
 	

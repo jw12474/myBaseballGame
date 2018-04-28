@@ -13,29 +13,36 @@ public class PlayerActions {
 	
 	
 	
-	public boolean determineHit(int player1num, int player2num) {
+	public void determineHit(int player1num, int player2num) {
 		
-		int batter;
-		int pitcher;
-		int luck1;
-		int luck2
+		int batter = 0;
+		int pitcher = 0;
+		int luck1= StartMenu.session.first.getLuck();
+		int luck2= StartMenu.session.second.getLuck();
+		boolean hit;
+		int rand = (int)(Math.random() * ((99 - 59) +1 )+ 59);
 		//we have to determine who is the batter 
 		if(StartMenu.session.first.getStatus() == "Batter") {
 			batter = player1num;
+			
+			batter = batter + luck1; 
 			pitcher = player2num;
+			
+			pitcher = pitcher + luck2;
+			
 		}else if(StartMenu.session.first.getStatus() == "Pitcher") {
 			batter = player2num;
+			batter = batter + luck2;
 			pitcher = player1num;
+			pitcher = pitcher + luck1;
 		}
 		
-		//implement the luck 
-		luck1 = StartMenu.session.first.getLuck();
-		luck2 = StartMenu.session.second.getLuck();
-		
-		
-		
-		
-		return false;
+		if((batter - pitcher) >= rand ) {
+			hit = true;
+		}else {
+			hit = false;
+		}
+		batter(hit);
 	}
 	
 	
