@@ -13,7 +13,30 @@ public class PlayerActions {
 	
 	
 	
-	
+	public boolean determineHit(int player1num, int player2num) {
+		
+		int batter;
+		int pitcher;
+		int luck1;
+		int luck2
+		//we have to determine who is the batter 
+		if(StartMenu.session.first.getStatus() == "Batter") {
+			batter = player1num;
+			pitcher = player2num;
+		}else if(StartMenu.session.first.getStatus() == "Pitcher") {
+			batter = player2num;
+			pitcher = player1num;
+		}
+		
+		//implement the luck 
+		luck1 = StartMenu.session.first.getLuck();
+		luck2 = StartMenu.session.second.getLuck();
+		
+		
+		
+		
+		return false;
+	}
 	
 	
 	public void batter(boolean hit) {
@@ -22,17 +45,9 @@ public class PlayerActions {
 				if(hit == false) {
 					strike++;
 					if(strike == 3) {
-						StartMenu.session.first.addToOut();
-						if(StartMenu.session.first.getOut() == 3) {
-							StartMenu.session.first.setStatus("Pitcher");
-							try {
-								StartMenu.session.addToRound();
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+						StartMenu.session.first.addToOutForBatter();
+						
 						}
-					}
 				}else if(hit == true ) {
 						if((batterarray[0] == false) && (batterarray[1] == false) && (batterarray[2] == false) && (batterarray[3] == false) ) {
 							batterarray[0] = true;
@@ -54,25 +69,17 @@ public class PlayerActions {
 							StartMenu.session.first.addToScore();
 						}
 				
-					}
-					
 				}
-			}else if(StartMenu.session.second.getStatus() == "Batter") {
+					
+			}
+		}else if(StartMenu.session.second.getStatus() == "Batter") {
 				while(StartMenu.session.second.getStatus() == "Batter") {
 					if(hit == false) {
 						strike++;
 					}
 					if(strike == 3) {
-						StartMenu.session.second.addToOut();
+						StartMenu.session.second.addToOutForBatter();
 				
-					} if(StartMenu.session.second.getOut() == 3) {
-						StartMenu.session.second.setStatus("Pitcher");
-						try {
-							StartMenu.session.addToRound();
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
 					}else if(hit == true ) {
 						if((batterarray[0] == false) && (batterarray[1] == false) && (batterarray[2] == false)  ) {
 				

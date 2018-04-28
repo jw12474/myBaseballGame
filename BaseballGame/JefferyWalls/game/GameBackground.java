@@ -291,8 +291,8 @@ public Stage sliders = new Stage();
 		Label player2 = new Label(StartMenu.session.second.getPlayerName());
 		player1.setLayoutX(100);
 		player2.setLayoutX(300);
-		player1.setLayoutY(200);
-		player2.setLayoutY(200);
+		player1.setLayoutY(100);
+		player2.setLayoutY(100);
 		Label pitch = new Label("Pitcher"); 
 		Slider pitcher = new Slider();
 		
@@ -304,8 +304,8 @@ public Stage sliders = new Stage();
 			pitcher.setLayoutX(300);
 			pitch.setLayoutX(300);
 		}
-		pitch.setLayoutY(250);
-		pitcher.setLayoutY(300);
+		pitch.setLayoutY(150);
+		pitcher.setLayoutY(200);
 		pitcher.setOrientation(Orientation.VERTICAL);
 		
 		Slider batter = new Slider();
@@ -317,13 +317,17 @@ public Stage sliders = new Stage();
 			batter.setLayoutX(300);
 			bat.setLayoutX(300);
 		}
-		bat.setLayoutY(250);
-		batter.setLayoutY(300);
+		bat.setLayoutY(150);
+		batter.setLayoutY(200);
 		batter.setOrientation(Orientation.VERTICAL);
+		
+		
+		//set numbers to the sliders
+		
 		
 		Pane pane = new Pane();
 		pane.getChildren().addAll(player1,player2,batter,pitcher,bat,pitch);
-		Scene scene = new Scene(pane, 500, 500 );
+		Scene scene = new Scene(pane, 500, 400 );
 		
 		return scene;
 	}

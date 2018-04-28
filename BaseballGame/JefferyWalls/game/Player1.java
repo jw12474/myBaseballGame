@@ -52,6 +52,10 @@ public class Player1  {
 		
 	}
 	
+	public boolean getquestion() {
+		return question;
+	}
+	
 	public int getLuck() {
 		setLuck();
 		//temp test
@@ -75,8 +79,18 @@ public class Player1  {
 	public int getOut() {
 		return out;
 	}
-	public void addToOut() {
+	public void addToOutForBatter() {
 		out++;
+		
+		if(getOut() == 3) {
+			setStatus("Pitcher");
+			try {
+				StartMenu.session.addToRound();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
