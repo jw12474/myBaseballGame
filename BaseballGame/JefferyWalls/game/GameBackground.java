@@ -271,7 +271,7 @@ public class GameBackground extends Application {
 		round.setTextFill(Color.WHITE);
 		Label roundNum = new Label(StartMenu.session.getRound());
 		roundNum.setLayoutX(625);
-		roundNum.setLayoutY(100);
+		roundNum.setLayoutY(150);
 		roundNum.setFont(score);
 		roundNum.setTextFill(Color.WHITE);
 		
@@ -307,7 +307,7 @@ public Stage sliders = new Stage();
 		Label pitch = new Label("Pitcher"); 
 		Slider player1 = new Slider();
 		player1.setLayoutX(100);
-		player1.setLayoutY(150);
+		player1.setLayoutY(200);
 		player1.setOrientation(Orientation.VERTICAL);
 		
 		Slider player2 = new Slider();
@@ -344,24 +344,26 @@ public Stage sliders = new Stage();
 		player2.setMin(0);
 		player2.setMax(100);
 		Label instruction = new Label("Place slider at level you want then when both are ready press Done");
-		instruction.setLayoutX(180);
+		instruction.setLayoutX(150);
 		instruction.setLayoutY(10);
 		
 		Button done = new Button("Done");
-		done.setLayoutX();
-		done.setLayoutY(value);
+		done.setLayoutX(245);
+		done.setLayoutY(350);
 		done.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				int 
+				int play1 = (int) player1.getValue();
+				int play2 = (int) player2.getValue();
+				slidersDone(play1,play2);
 				
 			}
 			
 		});
 		
 		Pane pane = new Pane();
-		pane.getChildren().addAll(instruction,player1Name,player2Name,player1,player2,bat,pitch);
+		pane.getChildren().addAll(instruction,player1Name,player2Name,player1,player2,bat,pitch,done);
 		Scene scene = new Scene(pane, 500, 400 );
 		
 		return scene;
