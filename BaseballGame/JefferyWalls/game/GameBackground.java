@@ -323,7 +323,11 @@ public Stage sliders = new Stage();
 		
 		
 		//set numbers to the sliders
-		
+		pitcher.setMin(0);
+		pitcher.setMax(100);
+		batter.setMin(0);
+		batter.setMax(100);
+		pitcher.se
 		
 		Pane pane = new Pane();
 		pane.getChildren().addAll(player1,player2,batter,pitcher,bat,pitch);
