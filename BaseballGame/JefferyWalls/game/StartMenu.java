@@ -1,6 +1,5 @@
 package game;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,11 +25,11 @@ public class StartMenu extends Application {
 
 		launch();
 	}
-	Stage primaryStage= new Stage();
+	Stage primaryStage;
 
 	@Override
 public void start(Stage primaryStage) throws Exception {
-		
+		this.primaryStage = primaryStage;
 //		
 		initializeAndShowStage(this.primaryStage);
 	}
@@ -178,7 +177,8 @@ public void start(Stage primaryStage) throws Exception {
 		
 		Player1 first = new Player1(player1Name, player1Color, answer1);
 		Player1 second = new Player1(player2Name, player2Color, answer2);
-		
+		first.setStatus("Pitcher");
+		second.setStatus("Batter");
 		session = new PlayGame(first, second);
 		
 		showGameBackground(primaryStage);

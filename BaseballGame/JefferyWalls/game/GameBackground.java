@@ -3,10 +3,12 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -15,6 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 public class GameBackground extends Application {
 
@@ -38,7 +41,8 @@ public class GameBackground extends Application {
 //	}
 	
 	
-	
+	//need this for the game movements and the actions to work
+	PlayerActions playBall = new PlayerActions();
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -201,6 +205,15 @@ public class GameBackground extends Application {
 		Button start = new Button("Start pitch");
 		start.setLayoutX(600);
 		start.setLayoutY(700);
+		start.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				startPitch();
+			}
+			
+		});
 		
 		Button restart = new Button("Restart");
 		restart.setLayoutX(700);
@@ -219,6 +232,38 @@ public class GameBackground extends Application {
 			
 		});
 		
+		Circle b1player = new Circle(15);
+		b1player.setCenterX(800);
+		b1player.setCenterY(420);
+		Circle b2player = new Circle(15);
+		b2player.setCenterX(625);
+		b2player.setCenterY(250);
+		Circle b3player = new Circle(15);
+		b3player.setCenterX(450);
+		b3player.setCenterY(420);
+		if(StartMenu.session.first.getStatus() == "Pitcher") {
+			b1player.setFill(Color.valueOf(StartMenu.session.first.getPlayerColor()));
+			b2player.setFill(Color.valueOf(StartMenu.session.first.getPlayerColor()));
+			b3player.setFill(Color.valueOf(StartMenu.session.first.getPlayerColor()));
+			
+		}else if(StartMenu.session.second.getStatus() == "Pitcher") {
+			b1player.setFill(Color.valueOf(StartMenu.session.second.getPlayerColor()));
+			b2player.setFill(Color.valueOf(StartMenu.session.second.getPlayerColor()));
+			b3player.setFill(Color.valueOf(StartMenu.session.second.getPlayerColor()));
+		}
+		b1player.setVisible(false);
+		b2player.setVisible(false);
+		b3player.setVisible(false);
+		if(playBall.batterarray[0] == true) {
+			b1player.setVisible(true);
+		}
+		if(playBall.batterarray[1] == true) {
+			b2player.setVisible(true);
+		}
+		if(playBall.batterarray[2] == true) {
+			b3player.setVisible(true);
+		}
+		
 		Pane pane1 = new Pane();
 		pane1.getChildren().addAll(greenBackground,restart,start,circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound, firstname, secondname,scoreLabel1, scoreLabel2,firstScore,secondScore);
 		
@@ -231,7 +276,7 @@ public class GameBackground extends Application {
 		Platform.setImplicitExit(false);
 		
 		StartMenu ap = new StartMenu();
-		ap.primaryStage.close();
+		
 		
 		
 		ap.initializeAndShowStage(restart);
@@ -239,8 +284,58 @@ public class GameBackground extends Application {
 		
 	}
 	
-	public void endGame() {
+public Stage sliders = new Stage();
+	
+	public Scene slider() {
+		Label player1 = new Label(StartMenu.session.first.getPlayerName());
+		Label player2 = new Label(StartMenu.session.second.getPlayerName());
+		player1.setLayoutX(100);
+		player2.setLayoutX(300);
+		player1.setLayoutY(200);
+		player2.setLayoutY(200);
+		Label pitch = new Label("Pitcher"); 
+		Slider pitcher = new Slider();
 		
+		if(StartMenu.session.first.getStatus() == "Pitcher") {
+			pitcher.setLayoutX(100);
+			pitch.setLayoutX(100);
+			
+		}else if(StartMenu.session.second.getStatus() == "Pitcher") {
+			pitcher.setLayoutX(300);
+			pitch.setLayoutX(300);
+		}
+		pitch.setLayoutY(250);
+		pitcher.setLayoutY(300);
+		pitcher.setOrientation(Orientation.VERTICAL);
+		
+		Slider batter = new Slider();
+		Label bat = new Label("Batter");
+		if(StartMenu.session.first.getStatus() == "Batter") {
+			batter.setLayoutX(100);
+			bat.setLayoutX(100);
+		}else if(StartMenu.session.second.getStatus() == "Batter") {
+			batter.setLayoutX(300);
+			bat.setLayoutX(300);
+		}
+		bat.setLayoutY(250);
+		batter.setLayoutY(300);
+		batter.setOrientation(Orientation.VERTICAL);
+		
+		Pane pane = new Pane();
+		pane.getChildren().addAll(player1,player2,batter,pitcher,bat,pitch);
+		Scene scene = new Scene(pane, 500, 500 );
+		
+		return scene;
+	}
+	
+	private void startPitch() {
+		sliders.setScene(slider());;
+		sliders.initModality(Modality.APPLICATION_MODAL);
+		sliders.show();
+	}
+	
+	public void endGame() {
+		System.exit(0);
 	}
 	
 	
