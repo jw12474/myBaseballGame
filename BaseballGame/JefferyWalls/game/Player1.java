@@ -83,7 +83,7 @@ public class Player1  {
 		out++;
 		
 		if(getOut() == 3) {
-			setStatus("Pitcher");
+			
 			try {
 				StartMenu.session.addToRound();
 			} catch (InterruptedException e) {

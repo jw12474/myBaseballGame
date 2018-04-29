@@ -76,7 +76,7 @@ public void start(Stage primaryStage) throws Exception {
 		player2color.setLayoutX(260);
 		player2color.setLayoutY(80);
 		
-		ObservableList<String> colors = FXCollections.observableArrayList("BLUE", "RED", "BLACK", "GREEN");
+		ObservableList<String> colors = FXCollections.observableArrayList("BLUE", "RED", "BLACK", "DARKMAGENTA");
 		ComboBox<String> p1DpBox = new ComboBox<String>();
 		p1DpBox.setItems(colors);
 		p1DpBox.setLayoutX(30);
@@ -163,7 +163,9 @@ public void start(Stage primaryStage) throws Exception {
 	private String player2Color;
 	private boolean answer1;
 	private boolean answer2;
-    private Player1 first;
+    @SuppressWarnings("unused")
+	private Player1 first;
+	@SuppressWarnings("unused")
 	private Player1 second;
 	public static PlayGame session; 
 	

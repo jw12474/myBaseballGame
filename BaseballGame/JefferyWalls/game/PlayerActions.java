@@ -42,20 +42,20 @@ public class PlayerActions {
 		}else {
 			hit = false;
 		}
+		System.out.println("The hit is " + hit);
 		batter(hit);
 	}
 	
 	
 	public void batter(boolean hit) {
 		if(StartMenu.session.first.getStatus() == "Batter") {
-			while(StartMenu.session.first.getStatus() == "Batter") {
-				if(hit == false) {
-					strike++;
-					if(strike == 3) {
-						StartMenu.session.first.addToOutForBatter();
-						
-						}
-				}else if(hit == true ) {
+			if(hit == false) {
+				strike++;
+				if(strike == 3) {
+					StartMenu.session.first.addToOutForBatter();
+					
+					}
+			}else if(hit == true ) {
 						if((batterarray[0] == false) && (batterarray[1] == false) && (batterarray[2] == false) && (batterarray[3] == false) ) {
 							batterarray[0] = true;
 						}else if((batterarray[0] == true) && (batterarray[1] == false) && (batterarray[2] == false) && (batterarray[3] == false) ) {
@@ -78,49 +78,64 @@ public class PlayerActions {
 				
 				}
 					
-			}
-		}else if(StartMenu.session.second.getStatus() == "Batter") {
-				while(StartMenu.session.second.getStatus() == "Batter") {
-					if(hit == false) {
-						strike++;
-					}
+			}else if(StartMenu.session.second.getStatus() == "Batter") {
+				if(hit == false) {
+					strike++;			
 					if(strike == 3) {
 						StartMenu.session.second.addToOutForBatter();
+						pitcher();
+						strike = 0;
 				
-					}else if(hit == true ) {
-						if((batterarray[0] == false) && (batterarray[1] == false) && (batterarray[2] == false)  ) {
-				
-							batterarray[0] = true;
-						
-						}else if((batterarray[0] == true) && (batterarray[1] == false) && (batterarray[2] == false)  ) {
+					}	
+				}else if(hit == true ) {
+							if((batterarray[0] == false) && (batterarray[1] == false) && (batterarray[2] == false)  ) {
 					
-							batterarray[1] = true;
-						
-						}else if((batterarray[0] == true) && (batterarray[1] == true) && (batterarray[2] == false) ) {
-							batterarray[2] = true;
-						}else if((batterarray[0] == true) && (batterarray[1] == true) && (batterarray[2] == true)) {
-							StartMenu.session.second.addToScore();
-						}else if(batterarray[0] == true) {
-							batterarray[1] = true;
-							batterarray[0] = true;
-						} else if(batterarray[1] = true) {
-							batterarray[2] = true;
-							batterarray[1] = false;
+								batterarray[0] = true;
 							
-						} else if(batterarray[2] = true) {
-							batterarray[2] = false;
-							StartMenu.session.second.addToScore();
-						} 
+							}else if((batterarray[0] == true) && (batterarray[1] == false) && (batterarray[2] == false)  ) {
+						
+								batterarray[1] = true;
+							
+							}else if((batterarray[0] == true) && (batterarray[1] == true) && (batterarray[2] == false) ) {
+								batterarray[2] = true;
+							}else if((batterarray[0] == true) && (batterarray[1] == true) && (batterarray[2] == true)) {
+								StartMenu.session.second.addToScore();
+							}else if(batterarray[0] == true) {
+								batterarray[1] = true;
+								batterarray[0] = true;
+							} else if(batterarray[1] = true) {
+								batterarray[2] = true;
+								batterarray[1] = false;
+								
+							} else if(batterarray[2] = true) {
+								batterarray[2] = false;
+								StartMenu.session.second.addToScore();
+							} 
+					
+						}
 				
-					}
 				}
-			}
+		String pitcher = "";
+		if(StartMenu.session.second.getStatus() == "Batter") {
+			pitcher = StartMenu.session.first.getPlayerName();
+		}else if(StartMenu.session.first.getStatus() == "Batter"){
+			pitcher = StartMenu.session.second.getPlayerName();
+		}
+		System.out.println("strike count is " + strike);
+		System.out.println("The pitcher is " + pitcher);
 		}
 	
 	
 	
 	//may happen today used to change who is pitcher color on mound
 	public void pitcher() {
+		if(StartMenu.session.first.getStatus() == "Pitcher") {
+			StartMenu.session.first.setStatus("Batter");
+			StartMenu.session.second.setStatus("Pitcher");
+		}else if(StartMenu.session.second.getStatus() == "Pitcher") {
+			StartMenu.session.first.setStatus("Pitcher");
+			StartMenu.session.second.setStatus("Batter");
+		}
 		
 	}
 	
