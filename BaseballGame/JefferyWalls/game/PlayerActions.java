@@ -126,6 +126,7 @@ public class PlayerActions {
 			playerCircle.createPlayer(i, batterarray[i]);
 		}
 		String pitcher = "";
+		
 		if(StartMenu.session.second.getStatus() == "Batter") {
 			pitcher = StartMenu.session.first.getPlayerName();
 		}else if(StartMenu.session.first.getStatus() == "Batter"){
@@ -133,6 +134,9 @@ public class PlayerActions {
 		}
 		System.out.println("strike count is " + strike);
 		System.out.println("The pitcher is " + pitcher);
+		System.out.println("player 1 score is " + StartMenu.session.first.getIntScore());
+		System.out.println("player 2 score is " + StartMenu.session.second.getIntScore());
+
 		
 		
 	}

@@ -44,8 +44,7 @@ public class PlayGame  {
 			if(score1>score2) {
 				GameBackground app = new GameBackground();
 				app.endGame();
-				TimeUnit.MINUTES.sleep(1);
-				Platform.exit();
+				
 			}
 	}
 	

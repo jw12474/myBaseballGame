@@ -332,7 +332,12 @@ public class GameBackground extends StartMenu {
 	
 	
 	public void endGame() {
-		System.exit(0);
+		Scene end = new end(endGamePane(),400,250);
+		
+	}
+	
+	public Pane endGamePane() {
+		
 	}
 	
 	public void initializeAndShowStage(Stage stage) {
