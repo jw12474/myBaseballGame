@@ -14,7 +14,7 @@ import javafx.scene.layout.Pane;
 public class battingPitching  {
 
 	
-	GameBackground ball = new GameBackground();
+	
 	
 	public Scene slider() {
 		Label player1Name = new Label(StartMenu.session.first.getPlayerName());
@@ -63,7 +63,7 @@ public class battingPitching  {
 		player2.setMin(0);
 		player2.setMax(100);
 		Label instruction = new Label("Place slider at level you want then when both are ready press Done");
-		instruction.setLayoutX(150);
+		instruction.setLayoutX(100);
 		instruction.setLayoutY(10);
 		
 		Button done = new Button("Done");
@@ -87,17 +87,18 @@ public class battingPitching  {
 		
 		return scene;
 	}
+	
 	public void startPitch() {
 			
-			ball.sliders.setScene(slider());
+			GameBackground.sliders.setScene(slider());
 			
-			ball.sliders.show();
+			GameBackground.sliders.show();
 			
 		}
 	
 	
 	private void slidersDone(int player1, int player2) {
-		ball.playBall.determineHit(player1, player2);
-		ball.sliders.close();
+		GameBackground.playBall.determineHit(player1, player2);
+		GameBackground.sliders.close();
 	}
 }

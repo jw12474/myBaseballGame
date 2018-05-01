@@ -10,6 +10,7 @@ public class PlayerActions {
 	public boolean[] batterarray = new boolean[3];
 	private int strike = 0;
 	int ball;
+	GameBackground playerCircle = new GameBackground();
 	
 	
 	
@@ -53,15 +54,17 @@ public class PlayerActions {
 				strike++;
 				if(strike == 3) {
 					StartMenu.session.first.addToOutForBatter();
-					
+					batterarray[0] = false;
+					batterarray[1] = false;
+					batterarray[2] = false;
 					}
 			}else if(hit == true ) {
-						if((batterarray[0] == false) && (batterarray[1] == false) && (batterarray[2] == false) && (batterarray[3] == false) ) {
+						if((batterarray[0] == false) && (batterarray[1] == false) && (batterarray[2] == false)  ) {
 							batterarray[0] = true;
 							
-						}else if((batterarray[0] == true) && (batterarray[1] == false) && (batterarray[2] == false) && (batterarray[3] == false) ) {
+						}else if((batterarray[0] == true) && (batterarray[1] == false) && (batterarray[2] == false) ) {
 							batterarray[1] = true;
-						}else if((batterarray[0] == true) && (batterarray[1] == true) && (batterarray[2] == false) && (batterarray[3] == false)) {
+						}else if((batterarray[0] == true) && (batterarray[1] == true) && (batterarray[2] == false) ) {
 							batterarray[2] = true;
 						}else if((batterarray[0] == true) && (batterarray[1] == true) && (batterarray[2] == true)) {
 							StartMenu.session.first.addToScore();
@@ -86,6 +89,9 @@ public class PlayerActions {
 						StartMenu.session.second.addToOutForBatter();
 						pitcher();
 						strike = 0;
+						batterarray[0] = false;
+						batterarray[1] = false;
+						batterarray[2] = false;
 				
 					}	
 				}else if(hit == true ) {
@@ -116,6 +122,9 @@ public class PlayerActions {
 						}
 				
 				}
+		for(int i = 0; i<batterarray.length;i++) {
+			playerCircle.createPlayer(i, batterarray[i]);
+		}
 		String pitcher = "";
 		if(StartMenu.session.second.getStatus() == "Batter") {
 			pitcher = StartMenu.session.first.getPlayerName();
@@ -124,6 +133,7 @@ public class PlayerActions {
 		}
 		System.out.println("strike count is " + strike);
 		System.out.println("The pitcher is " + pitcher);
+		
 		
 	}
 	
@@ -137,6 +147,7 @@ public class PlayerActions {
 		}else if(StartMenu.session.second.getStatus() == "Pitcher") {
 			StartMenu.session.first.setStatus("Pitcher");
 			StartMenu.session.second.setStatus("Batter");
+			
 		}
 		
 	}
