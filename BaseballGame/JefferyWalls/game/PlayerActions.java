@@ -58,6 +58,7 @@ public class PlayerActions {
 			}else if(hit == true ) {
 						if((batterarray[0] == false) && (batterarray[1] == false) && (batterarray[2] == false) && (batterarray[3] == false) ) {
 							batterarray[0] = true;
+							
 						}else if((batterarray[0] == true) && (batterarray[1] == false) && (batterarray[2] == false) && (batterarray[3] == false) ) {
 							batterarray[1] = true;
 						}else if((batterarray[0] == true) && (batterarray[1] == true) && (batterarray[2] == false) && (batterarray[3] == false)) {
@@ -123,7 +124,8 @@ public class PlayerActions {
 		}
 		System.out.println("strike count is " + strike);
 		System.out.println("The pitcher is " + pitcher);
-		}
+		
+	}
 	
 	
 	

@@ -58,6 +58,13 @@ public class GameBackground extends StartMenu {
         stage.show();
     }
 	
+	//creating players
+	
+	
+
+	Circle player1= null;
+	Circle player2 = null;
+	Circle player3 = null;
 	
 	
 	public Pane createPane() {
@@ -225,18 +232,6 @@ public class GameBackground extends StartMenu {
 			
 		});
 		
-		Circle b1player = new Circle(15);
-		b1player.setCenterX(800);
-		b1player.setCenterY(420);
-		Circle b2player = new Circle(15);
-		b2player.setCenterX(625);
-		b2player.setCenterY(250);
-		Circle b3player = new Circle(15);
-		b3player.setCenterX(450);
-		b3player.setCenterY(420);
-		b1player.setVisible(false);
-		b2player.setVisible(false);
-		b3player.setVisible(false);
 		
 		
 		Label round = new Label("Round");
@@ -250,7 +245,6 @@ public class GameBackground extends StartMenu {
 		roundNum.setFont(score);
 		roundNum.setTextFill(Color.WHITE);
 		
-		
 		battingPitching throwhit = new battingPitching();
 		start.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -263,37 +257,65 @@ public class GameBackground extends StartMenu {
 				secondScore.setText(session.second.getScore());
 				firstScore.setText(session.first.getScore());
 				roundNum.setText(session.getRound());
-				if(session.first.getStatus() == "Pitcher") {
-					b1player.setFill(Color.valueOf(session.first.getPlayerColor()));
-					b2player.setFill(Color.valueOf(session.first.getPlayerColor()));
-					b3player.setFill(Color.valueOf(session.first.getPlayerColor()));
-					
-				}else if(StartMenu.session.second.getStatus() == "Pitcher") {
-					b1player.setFill(Color.valueOf(session.second.getPlayerColor()));
-					b2player.setFill(Color.valueOf(session.second.getPlayerColor()));
-					b3player.setFill(Color.valueOf(session.second.getPlayerColor()));
-				}
+				PlayerActions pl = new PlayerActions();
 			
-				if(playBall.batterarray[0] == true) {
-					b1player.setVisible(true);
-				}
-				if(playBall.batterarray[1] == true) {
-					b2player.setVisible(true);
-				}
-				if(playBall.batterarray[2] == true) {
-					b3player.setVisible(true);
-				}
+			
+				player1 = GameBackground.createPlayer(0, pl.batterarray[0]);
+				player2 = GameBackground.createPlayer(1, pl.batterarray[1]);
+				player3 = GameBackground.createPlayer(2, pl.batterarray[2]);
+				
+				
 			}
 			
 		});
 		
 		Pane pane1 = new Pane();
-		pane1.getChildren().addAll(greenBackground,restart,round,roundNum,start,circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound, firstname, secondname,scoreLabel1, scoreLabel2,firstScore,secondScore, b1player,b2player,b3player);
+		pane1.getChildren().addAll(greenBackground,restart,round,roundNum,start,circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound, firstname, secondname,scoreLabel1, scoreLabel2,firstScore,secondScore,player1,player2,player3);
 		
 		
 		return pane1;
 	}
 	Stage restart = new Stage();
+	
+	public static Circle createPlayer(int arraynum, boolean visible) {
+		Circle b0player = new Circle(15);
+		Circle b1player = new Circle(15);
+		Circle b2player = new Circle(15);
+		b0player.setCenterX(800);
+		b0player.setCenterY(420);
+		
+		b1player.setCenterX(625);
+		b1player.setCenterY(250);
+
+		b2player.setCenterX(450);
+		b2player.setCenterY(420);
+		
+		
+		
+		if(session.first.getStatus() == "Pitcher") {
+			b0player.setFill(Color.valueOf(session.second.getPlayerColor()));
+			b1player.setFill(Color.valueOf(session.second.getPlayerColor()));
+			b2player.setFill(Color.valueOf(session.second.getPlayerColor()));
+			
+		}else if(session.second.getStatus() == "Pitcher") {
+			b0player.setFill(Color.valueOf(session.second.getPlayerColor()));
+			b1player.setFill(Color.valueOf(session.second.getPlayerColor()));
+			b2player.setFill(Color.valueOf(session.second.getPlayerColor()));
+		}
+		if(arraynum == 0) {
+			b0player.setVisible(visible);
+			return b0player;
+		}else if(arraynum == 1) {
+			b1player.setVisible(visible);
+			return b1player;
+		} else if(arraynum == 2) {
+			b2player.setVisible(visible);
+			return b2player;
+		}else return null;
+		
+		
+		
+	}
 	
 	private void restart() throws Exception {
 		Platform.setImplicitExit(false);
