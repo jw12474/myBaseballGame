@@ -10,7 +10,7 @@ public class PlayerActions {
 	public boolean[] batterarray = new boolean[3];
 	private int strike = 0;
 	int ball;
-	GameBackground playerCircle = new GameBackground();
+	
 	
 	
 	
@@ -52,13 +52,17 @@ public class PlayerActions {
 		if(StartMenu.session.first.getStatus() == "Batter") {
 			if(hit == false) {
 				strike++;
-				if(strike > 3) {
+				if(strike == 3) {
+					System.out.println("Strike count got to three it is now back to zero");
 					StartMenu.session.first.addToOutForBatter();
-					pitcher();
+					
 					batterarray[0] = false;
 					batterarray[1] = false;
 					batterarray[2] = false;
 					strike = 0;
+				}
+				if(StartMenu.session.first.getOut()== 3) {
+					pitcher();
 				}
 			}else if(hit == true ) {
 						if((batterarray[0] == false) && (batterarray[1] == false) && (batterarray[2] == false)  ) {
@@ -87,7 +91,8 @@ public class PlayerActions {
 			}else if(StartMenu.session.second.getStatus() == "Batter") {
 				if(hit == false) {
 					strike++;			
-					if(strike > 3) {
+					if(strike == 3) {
+						System.out.println("Strike count got to three it is now back to zero");
 						StartMenu.session.second.addToOutForBatter();
 						pitcher();
 						strike = 0;
@@ -96,7 +101,10 @@ public class PlayerActions {
 						batterarray[2] = false;
 						strike = 0;
 				
-					}	
+					}
+					if(StartMenu.session.first.getOut()== 3) {
+						pitcher();
+					}
 				}else if(hit == true ) {
 							if((batterarray[0] == false) && (batterarray[1] == false) && (batterarray[2] == false)  ) {
 					
@@ -126,19 +134,33 @@ public class PlayerActions {
 				
 				}
 		for(int i = 0; i<batterarray.length -1;i++) {
-			playerCircle.createPlayer(i, batterarray[i]);
+			GameBackground.createPlayer(i, batterarray[i]);
 		}
 		String pitcher = "";
-		
+		int out = 0;
 		if(StartMenu.session.second.getStatus() == "Batter") {
 			pitcher = StartMenu.session.first.getPlayerName();
+			out = StartMenu.session.second.getOut();
 		}else if(StartMenu.session.first.getStatus() == "Batter"){
 			pitcher = StartMenu.session.second.getPlayerName();
+			out = StartMenu.session.first.getOut();
+
 		}
 		System.out.println("strike count is " + strike);
 		System.out.println("The pitcher is " + pitcher);
 		System.out.println("player 1 score is " + StartMenu.session.first.getIntScore());
 		System.out.println("player 2 score is " + StartMenu.session.second.getIntScore());
+		System.out.println("the round is " + StartMenu.session.getRound());
+		System.out.println("the Out count is " + out);
+		GameBackground newGame = new GameBackground();
+		newGame.secondScore.setText(StartMenu.session.second.getScore());
+		newGame.firstScore.setText(StartMenu.session.first.getScore());
+		newGame.roundNum.setText(StartMenu.session.getRound());
+		GameBackground.b0player.setVisible(batterarray[0]);
+		GameBackground.b1player.setVisible(batterarray[1]);
+		GameBackground.b2player.setVisible(batterarray[2]);
+		newGame.showGameBackground(StartMenu.primaryStage);
+		
 
 		
 		
@@ -154,6 +176,7 @@ public class PlayerActions {
 		}else if(StartMenu.session.second.getStatus() == "Pitcher") {
 			StartMenu.session.first.setStatus("Pitcher");
 			StartMenu.session.second.setStatus("Batter");
+			
 			
 		}
 		

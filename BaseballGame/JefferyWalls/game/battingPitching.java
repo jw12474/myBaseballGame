@@ -34,12 +34,12 @@ public class battingPitching  {
 		player2.setLayoutY(200);
 		player2.setOrientation(Orientation.VERTICAL);
 		if(StartMenu.session.first.getStatus() == "Pitcher") {
-			player1.setMax(50);
+			player1.setMax(25);
 			pitch.setLayoutX(100);
 			player2.setMax(100);
 			
 		}else if(StartMenu.session.second.getStatus() == "Pitcher") {
-			player2.setMax(50);
+			player2.setMax(25);
 			pitch.setLayoutX(300);
 			player1.setMax(100);
 		}
@@ -96,11 +96,13 @@ public class battingPitching  {
 			
 			GameBackground.sliders.show();
 			
+			
 		}
 	
 	
 	private void slidersDone(int player1, int player2) {
 		GameBackground.playBall.determineHit(player1, player2);
+		
 		GameBackground.sliders.close();
 	}
 }

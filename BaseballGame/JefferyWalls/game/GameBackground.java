@@ -56,9 +56,12 @@ public class GameBackground extends StartMenu {
 	
 	
 
-	Circle b0player = new Circle(15);
-	Circle b1player = new Circle(15);
-	Circle b2player = new Circle(15);
+	static Circle b0player = new Circle(15);
+	static Circle b1player = new Circle(15);
+	static Circle b2player = new Circle(15);
+	Label firstScore = new Label(session.first.getScore());
+	Label secondScore = new Label(session.second.getScore());
+	Label roundNum = new Label(session.getRound());
 	
 	
 	public Pane createPane() {
@@ -91,7 +94,7 @@ public class GameBackground extends StartMenu {
 		scoreLabel1.setLayoutY(150);
 		scoreLabel1.setTextFill(Color.valueOf(session.first.getPlayerColor()));
 		
-		Label firstScore = new Label(session.first.getScore());
+		
 		firstScore.setLayoutX(100);
 		firstScore.setFont(score);
 		firstScore.setLayoutY(175);
@@ -103,7 +106,7 @@ public class GameBackground extends StartMenu {
 		scoreLabel2.setLayoutY(150);
 		scoreLabel2.setTextFill(Color.valueOf(session.second.getPlayerColor()));
 		
-		Label secondScore = new Label(session.second.getScore());
+		
 		secondScore.setLayoutX(1150);
 		secondScore.setFont(score);
 		secondScore.setLayoutY(175);
@@ -233,12 +236,14 @@ public class GameBackground extends StartMenu {
 		round.setLayoutY(100);
 		round.setFont(font);
 		round.setTextFill(Color.WHITE);
-		Label roundNum = new Label(session.getRound());
+		
 		roundNum.setLayoutX(625);
 		roundNum.setLayoutY(150);
 		roundNum.setFont(score);
 		roundNum.setTextFill(Color.WHITE);
-		
+		b0player.setVisible(false);
+		b1player.setVisible(false);
+		b2player.setVisible(false);
 		battingPitching throwhit = new battingPitching();
 		start.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -247,15 +252,7 @@ public class GameBackground extends StartMenu {
 				// TODO Auto-generated method stub
 				//need to call this for the sliders to come up 
 				
-				throwhit.startPitch();
-				secondScore.setText(session.second.getScore());
-				firstScore.setText(session.first.getScore());
-				roundNum.setText(session.getRound());
-				
-				
-			
-			
-				
+				 throwhit.startPitch();
 				
 				
 			}
@@ -265,9 +262,7 @@ public class GameBackground extends StartMenu {
 		
 		
 		
-		b0player.setVisible(false);
-		b1player.setVisible(false);
-		b2player.setVisible(false);
+		
 		
 		Pane pane1 = new Pane();
 		pane1.getChildren().addAll(greenBackground,restart,round,roundNum,start,circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound, firstname, secondname,scoreLabel1, scoreLabel2,firstScore,secondScore,b0player,b1player,b2player);
@@ -284,7 +279,7 @@ public class GameBackground extends StartMenu {
 	
 	
 	
-	public void createPlayer(int arraynum, boolean visible) {
+	public static void createPlayer(int arraynum, boolean visible) {
 		
 		
 		
@@ -359,8 +354,26 @@ public class GameBackground extends StartMenu {
 			}
 			
 		});
+		
+		Button again = new Button("Player Again");
+		again.setLayoutX(200);
+		again.setLayoutY(200);
+		again.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				try {
+					restart();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+			
+		});
 		Pane endpane = new Pane();
-		endpane.getChildren().addAll();
+		endpane.getChildren().addAll(winner,end,again);
 		return endpane;
 	}
 	

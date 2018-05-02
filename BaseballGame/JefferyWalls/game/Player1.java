@@ -13,6 +13,7 @@ public class Player1  {
 	private String status;
 	private int Score=0;
 	private int out= 0;
+
 	
 
 	public Player1(String name, String color, boolean question) {
@@ -83,6 +84,7 @@ public class Player1  {
 		out++;
 		
 		if(getOut() == 3) {
+			
 			
 			try {
 				StartMenu.session.addToRound();
