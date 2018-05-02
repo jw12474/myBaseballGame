@@ -56,7 +56,9 @@ public class GameBackground extends StartMenu {
 	
 	
 
-	
+	Circle b0player = new Circle(15);
+	Circle b1player = new Circle(15);
+	Circle b2player = new Circle(15);
 	
 	
 	public Pane createPane() {
@@ -260,8 +262,15 @@ public class GameBackground extends StartMenu {
 			
 		});
 		
+		
+		
+		
+		b0player.setVisible(false);
+		b1player.setVisible(false);
+		b2player.setVisible(false);
+		
 		Pane pane1 = new Pane();
-		pane1.getChildren().addAll(greenBackground,restart,round,roundNum,start,circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound, firstname, secondname,scoreLabel1, scoreLabel2,firstScore,secondScore);
+		pane1.getChildren().addAll(greenBackground,restart,round,roundNum,start,circle1,circle2,b1,b2,b3,b4,f1,f2,base1,base2,base3, base4,mound, firstname, secondname,scoreLabel1, scoreLabel2,firstScore,secondScore,b0player,b1player,b2player);
 		
 		
 		return pane1;
@@ -271,22 +280,14 @@ public class GameBackground extends StartMenu {
 	public void setPane(Circle circle) {
 		pane.getChildren().add(circle);
 	}
-	Circle b0player = new Circle(15);
-	Circle b1player = new Circle(15);
-	Circle b2player = new Circle(15);
+	
+	
 	
 	
 	public void createPlayer(int arraynum, boolean visible) {
 		
 		
-		b0player.setCenterX(800);
-		b0player.setCenterY(420);
 		
-		b1player.setCenterX(625);
-		b1player.setCenterY(250);
-
-		b2player.setCenterX(450);
-		b2player.setCenterY(420);
 		
 		if(session.first.getStatus() == "Pitcher") {
 			b0player.setFill(Color.valueOf(session.second.getPlayerColor()));
@@ -300,18 +301,18 @@ public class GameBackground extends StartMenu {
 		}
 		if(arraynum == 0) {
 			b0player.setVisible(visible);
+			//setPane(b0player);
 			
 		}else if(arraynum == 1) {
 			b1player.setVisible(visible);
+			//setPane(b1player);
 			
 		} else if(arraynum == 2) {
 			b2player.setVisible(visible);
-			
+			//setPane(b2player);
 		}
-		setPane(b0player);
-		setPane(b1player);
-		setPane(b2player);
-		
+	
+		StartMenu.primaryStage.show();
 		
 		
 	}
@@ -322,9 +323,7 @@ public class GameBackground extends StartMenu {
 		StartMenu ap = new StartMenu();
 		
 		
-		
-		ap.initializeAndShowStage(restart);
-		ap.primaryStage.close();
+		primaryStage.setScene(ap.createScene());
 		
 	}
 
@@ -332,21 +331,38 @@ public class GameBackground extends StartMenu {
 	
 	
 	public void endGame() {
-		Scene end = new end(endGamePane(),400,250);
-		
+		Scene end = new Scene(endGamePane(),400,250);
+		restart.setScene(end);
+		restart.show();
 	}
 	
 	public Pane endGamePane() {
-		
+		String whoWon = "";
+		if(session.first.getIntScore()>session.second.getIntScore()) {
+			whoWon = session.first.getPlayerName();
+		}else if(session.first.getIntScore()<session.second.getIntScore()) {
+			whoWon = session.second.getPlayerName();
+		}
+		Label winner = new Label(whoWon);
+		winner.setLayoutX(150);
+		winner.setLayoutY(100);
+		Button end = new Button("End Game");
+		end.setLayoutX(180);
+		end.setLayoutY(200);
+		end.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				primaryStage.close();
+				restart.close();
+				
+			}
+			
+		});
+		Pane endpane = new Pane();
+		endpane.getChildren().addAll();
+		return endpane;
 	}
-	
-	public void initializeAndShowStage(Stage stage) {
-		
-		Scene field = new Scene(pane,1350,800);
-		field.setFill(Color.GREEN);
-		stage.setScene(field);
-        stage.show();
-    }
 	
 	
 	

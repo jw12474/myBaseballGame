@@ -52,12 +52,14 @@ public class PlayerActions {
 		if(StartMenu.session.first.getStatus() == "Batter") {
 			if(hit == false) {
 				strike++;
-				if(strike == 3) {
+				if(strike > 3) {
 					StartMenu.session.first.addToOutForBatter();
+					pitcher();
 					batterarray[0] = false;
 					batterarray[1] = false;
 					batterarray[2] = false;
-					}
+					strike = 0;
+				}
 			}else if(hit == true ) {
 						if((batterarray[0] == false) && (batterarray[1] == false) && (batterarray[2] == false)  ) {
 							batterarray[0] = true;
@@ -85,13 +87,14 @@ public class PlayerActions {
 			}else if(StartMenu.session.second.getStatus() == "Batter") {
 				if(hit == false) {
 					strike++;			
-					if(strike == 3) {
+					if(strike > 3) {
 						StartMenu.session.second.addToOutForBatter();
 						pitcher();
 						strike = 0;
 						batterarray[0] = false;
 						batterarray[1] = false;
 						batterarray[2] = false;
+						strike = 0;
 				
 					}	
 				}else if(hit == true ) {
@@ -122,7 +125,7 @@ public class PlayerActions {
 						}
 				
 				}
-		for(int i = 0; i<batterarray.length;i++) {
+		for(int i = 0; i<batterarray.length -1;i++) {
 			playerCircle.createPlayer(i, batterarray[i]);
 		}
 		String pitcher = "";

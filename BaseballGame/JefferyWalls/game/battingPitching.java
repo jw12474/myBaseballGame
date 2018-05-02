@@ -34,12 +34,14 @@ public class battingPitching  {
 		player2.setLayoutY(200);
 		player2.setOrientation(Orientation.VERTICAL);
 		if(StartMenu.session.first.getStatus() == "Pitcher") {
-			
+			player1.setMax(50);
 			pitch.setLayoutX(100);
+			player2.setMax(100);
 			
 		}else if(StartMenu.session.second.getStatus() == "Pitcher") {
-			
+			player2.setMax(50);
 			pitch.setLayoutX(300);
+			player1.setMax(100);
 		}
 		pitch.setLayoutY(150);
 		
@@ -59,9 +61,9 @@ public class battingPitching  {
 		
 		//set numbers to the sliders
 		player1.setMin(0);
-		player1.setMax(100);
+		
 		player2.setMin(0);
-		player2.setMax(100);
+		
 		Label instruction = new Label("Place slider at level you want then when both are ready press Done");
 		instruction.setLayoutX(100);
 		instruction.setLayoutY(10);

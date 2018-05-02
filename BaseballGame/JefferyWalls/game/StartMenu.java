@@ -25,8 +25,9 @@ public class StartMenu extends Application {
 
 		launch();
 	}
-	Stage primaryStage;
+	public static Stage primaryStage;
 
+	@SuppressWarnings("static-access")
 	@Override
 public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;

@@ -1,7 +1,5 @@
 package game;
-import java.util.concurrent.TimeUnit;
 
-import javafx.application.Platform;
 
 public class PlayGame  {
 
@@ -39,13 +37,11 @@ public class PlayGame  {
 	}
 	
 	public void gameEnd() throws InterruptedException {
-		int score1 = StartMenu.session.first.getIntScore();
-			int score2 = StartMenu.session.second.getIntScore();
-			if(score1>score2) {
+		
 				GameBackground app = new GameBackground();
 				app.endGame();
 				
-			}
+		
 	}
 	
 	public String getRound() {
