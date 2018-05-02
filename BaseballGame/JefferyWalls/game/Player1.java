@@ -80,6 +80,9 @@ public class Player1  {
 	public int getOut() {
 		return out;
 	}
+	public void resetout() {
+		out = 0;
+	}
 	public void addToOutForBatter() {
 		out++;
 		

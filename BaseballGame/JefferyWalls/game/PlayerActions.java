@@ -63,6 +63,7 @@ public class PlayerActions {
 				}
 				if(StartMenu.session.first.getOut()== 3) {
 					pitcher();
+					StartMenu.session.first.resetout();
 				}
 			}else if(hit == true ) {
 						if((batterarray[0] == false) && (batterarray[1] == false) && (batterarray[2] == false)  ) {
@@ -102,8 +103,9 @@ public class PlayerActions {
 						strike = 0;
 				
 					}
-					if(StartMenu.session.first.getOut()== 3) {
+					if(StartMenu.session.second.getOut()== 3) {
 						pitcher();
+						StartMenu.session.second.resetout();
 					}
 				}else if(hit == true ) {
 							if((batterarray[0] == false) && (batterarray[1] == false) && (batterarray[2] == false)  ) {

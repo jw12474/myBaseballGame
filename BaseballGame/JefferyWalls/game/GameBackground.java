@@ -337,12 +337,14 @@ public class GameBackground extends StartMenu {
 			whoWon = session.first.getPlayerName();
 		}else if(session.first.getIntScore()<session.second.getIntScore()) {
 			whoWon = session.second.getPlayerName();
+		} else {
+			whoWon = "You Tied";
 		}
 		Label winner = new Label(whoWon);
-		winner.setLayoutX(150);
+		winner.setLayoutX(1500);
 		winner.setLayoutY(100);
 		Button end = new Button("End Game");
-		end.setLayoutX(180);
+		end.setLayoutX(120);
 		end.setLayoutY(200);
 		end.setOnAction(new EventHandler<ActionEvent>(){
 
